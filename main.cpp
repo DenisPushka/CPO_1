@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <list>
+#include <fstream>
 
 using namespace std;
 
@@ -14,6 +15,8 @@ struct Home {
 void initialization(int n, Home ar_home[]);
 
 void print(int n, Home ar_home[]);
+
+void print_in_txt(int n, Home ar_home[]);
 
 /*list<Home> *selection_of_the_list_hours(int n, double s, Home ar_h[]);*/
 
@@ -68,9 +71,8 @@ int main() {
 
     auto list_hours = new list<Home>;
     for (auto i = 0; i < count; i++)
-        if (s > (array_home[i].all_square / array_home[i].number_of_tenants)) {
+        if ((array_home[i].all_square / array_home[i].number_of_tenants) < s)
             list_hours->push_back(array_home[i]);
-        }
 
     Home ar[list_hours->size()];
     auto i = 0;
@@ -79,7 +81,8 @@ int main() {
         i++;
     }
 
-    print(i,ar);
+    print(i, ar);
+    print_in_txt(i, ar);
     delete[]array_home;
     // delete[]ar;
     return 0;
@@ -101,6 +104,16 @@ void print(int count, Home array_home[]) {
     for (auto i = 0; i < count; i++)
         printf("Дом: %d,\n\tулица: %s, площадь: %e, количество соседей: %i\n",
                i + 1, array_home[i].street.data(), array_home[i].all_square, array_home[i].number_of_tenants);
+}
+
+void print_in_txt(int n, Home ar_home[]) {
+    ofstream fout("newFile.txt");
+    for (auto i = 0; i < n; i++)
+        fout << "Дом: " << i + 1
+        << "\n\tулица: " << ar_home[i].street.data()
+        << ", площадь: " << ar_home[i].all_square
+        << ", количество соседей: " << ar_home[i].number_of_tenants << endl;
+    fout.close();
 }
 
 /*Home *convert(list<Home> list){
