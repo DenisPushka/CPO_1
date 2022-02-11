@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <list>
 #include <fstream>
 
@@ -52,8 +51,8 @@ int main() {
          printf_s("\t%s\n", i.data());
 
 
-     int mas[3] = {1, 2, 3};
-     int mmm[3] = {4, 5, 6};
+     int mas[] = {1, 2, 3};
+     int mmm[] = {4, 5, 6};
 
      for (auto m: mas)
          printf(" %d,", m);
@@ -65,6 +64,7 @@ int main() {
     // initialization(count, array_home);
     print(count, array_home);
 
+    auto zx = 0;
     auto s = 0;
     cout << "\n\tЖилая площадь на одного жильца менее s, введите переменную s - ";
     cin >> s;
